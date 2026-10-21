@@ -1,0 +1,23 @@
+# Python environments and caches
+.venv/
+.venv-backup/
+.venv-backup-*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Secrets and local state
+.env
+.env.*
+.DS_Store
+
+# Raw data snapshot (identified by data/raw/telco.source.json)
+data/raw/*.csv
+
+# Generated data, models, reports and tracking stores
+data/processed/*
+!data/processed/.gitkeep
+artifacts/*
+!artifacts/.gitkeep
+reports/
+mlruns/
