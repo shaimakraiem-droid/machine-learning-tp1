@@ -113,7 +113,7 @@ churnlab v0.1.0
 
 | Item | Evidence produced in TP01 | Remaining limitation |
 |---|---|---|
-| Code | Git commits `666b891` (initial project) and `836a8c4` (README branch) | Uncommitted edits are not identified by a commit |
+| Code | Git commits `666b891` (initial project), `836a8c4` (README branch) and merge commit `bf366a4` on `main` | Uncommitted edits are not identified by a commit |
 | Package selections | `pyproject.toml`, `uv.lock` | The interpreter (here python.org CPython 3.11.1) and the platform still influence which wheels get installed |
 | Installed environment | `environment-before.json` and `environment.json`, which are identical | They do not capture every OS, compiler, BLAS or hardware detail |
 | Source data | Commit-pinned source URL and SHA-256 in `data/raw/telco.source.json` | A hash proves which bytes were used, not that the labels are correct or free of leakage |
@@ -121,11 +121,22 @@ churnlab v0.1.0
 
 ## Part E
 
-- Local commits: `666b891 Initialize Telco churn project` on `main`, and `836a8c4 Document reproducible Telco onboarding` on `docs/telco-onboarding`.
-- GitHub repository: _TODO_
-- Pull request URL: _TODO_
-- Partner's review question and my answer: _TODO_
-- Merge commit on `main`: _TODO_
+- Commits: `666b891 Initialize Telco churn project` and `81cfe51 Add TP01 evidence` on `main`, and `836a8c4 Document reproducible Telco onboarding` on `docs/telco-onboarding`.
+- GitHub repository: <https://github.com/shaimakraiem-droid/machine-learning-tp1>
+- Pull request URL: <https://github.com/shaimakraiem-droid/machine-learning-tp1/pull/1>
+- Partner review on the PR: sarahchammari04 commented « bbb » ([comment](https://github.com/shaimakraiem-droid/machine-learning-tp1/pull/1#issuecomment-6321289737)), and I replied « ml » ([reply](https://github.com/shaimakraiem-droid/machine-learning-tp1/pull/1#issuecomment-6321295195)). These comments do not contain a substantive review question. Before merging, I checked the change myself from a fresh environment: I removed `.venv/`, ran `uv sync --locked` and `scripts/inspect_telco.py` again, and got the same dataset hash and the same counts as stated in the README.
+- Merge commit on `main`: `bf366a4` (Merge pull request #1 from shaimakraiem-droid/docs/telco-onboarding)
+
+`git log --oneline --graph --decorate -8` after `git switch main` and `git pull`:
+
+```text
+*   bf366a4 (HEAD -> main, origin/main, origin/HEAD) Merge pull request #1 from shaimakraiem-droid/docs/telco-onboarding
+|\
+| * 836a8c4 (origin/docs/telco-onboarding, docs/telco-onboarding) Document reproducible Telco onboarding
+* | 81cfe51 Add TP01 evidence
+|/
+* 666b891 (exercise/local-recovery) Initialize Telco churn project
+```
 
 PR description (to paste when opening the PR):
 
@@ -182,4 +193,4 @@ $ git switch main
 - Data cleaning and train/test splits, including how the 11 blank `TotalCharges` values will be handled (TP02).
 - The exact Python interpreter and system libraries, which the lock file does not pin.
 - Label quality, and the absence of leakage in the features.
-- The review and merge on GitHub, which still need a partner (Part E).
+- An independent check by another person: the PR comments contain no substantive review question, so nobody else has yet run the setup and the inspection on another machine (Part E4).
